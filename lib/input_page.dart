@@ -24,6 +24,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.male;
   int selectedHeight = averageMaleHeight;
   int selectedWeight = averageMaleWeight;
+  int selectedAge = 25;
 
   Function selectGender(Gender gender) => () {
         setState(() {
@@ -171,6 +172,43 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(
                       color: kInactiveCardColor,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'AGE',
+                            style: kLabelStyle,
+                          ),
+                          Text(
+                            selectedAge.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                iconData: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    --selectedAge;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              RoundIconButton(
+                                iconData: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    ++selectedAge;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
