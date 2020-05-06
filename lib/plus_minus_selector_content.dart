@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/round_icon_button.dart';
 import 'constants.dart';
 
-class plusMinusSelectorContent extends StatelessWidget {
-  plusMinusSelectorContent({
+class PlusMinusSelectorContent extends StatelessWidget {
+  PlusMinusSelectorContent({
     @required this.label,
     @required this.value,
     @required this.onPlusPressed,
