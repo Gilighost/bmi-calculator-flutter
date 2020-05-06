@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
+import 'plus_minus_selector_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
 import 'round_icon_button.dart';
@@ -130,84 +131,38 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(
                       color: kInactiveCardColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'WEIGHT',
-                            style: kLabelStyle,
-                          ),
-                          Text(
-                            selectedWeight.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              RoundIconButton(
-                                iconData: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    --selectedWeight;
-                                  });
-                                },
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              RoundIconButton(
-                                iconData: FontAwesomeIcons.plus,
-                                onPressed: () {
-                                  setState(() {
-                                    ++selectedWeight;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
+                      child: plusMinusSelectorContent(
+                        label: "WEIGHT",
+                        value: selectedWeight,
+                        onPlusPressed: () {
+                          setState(() {
+                            ++selectedWeight;
+                          });
+                        },
+                        onMinusPressed: () {
+                          setState(() {
+                            --selectedWeight;
+                          });
+                        },
                       ),
                     ),
                   ),
                   Expanded(
                     child: ReusableCard(
                       color: kInactiveCardColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'AGE',
-                            style: kLabelStyle,
-                          ),
-                          Text(
-                            selectedAge.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              RoundIconButton(
-                                iconData: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    --selectedAge;
-                                  });
-                                },
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              RoundIconButton(
-                                iconData: FontAwesomeIcons.plus,
-                                onPressed: () {
-                                  setState(() {
-                                    ++selectedAge;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
+                      child: plusMinusSelectorContent(
+                        label: "AGE",
+                        value: selectedAge,
+                        onPlusPressed: () {
+                          setState(() {
+                            ++selectedAge;
+                          });
+                        },
+                        onMinusPressed: () {
+                          setState(() {
+                            --selectedAge;
+                          });
+                        },
                       ),
                     ),
                   ),
