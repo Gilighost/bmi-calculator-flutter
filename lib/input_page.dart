@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'bmi_calculator.dart';
 import 'icon_content.dart';
 import 'nav_button.dart';
 import 'plus_minus_selector_content.dart';
@@ -12,21 +13,16 @@ const averageMaleHeight = 69;
 const averageFemaleWeight = 170;
 const averageMaleWeight = 190;
 
-enum Gender {
-  male,
-  female,
-}
-
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender selectedGender = Gender.male;
-  int selectedHeight = averageMaleHeight;
-  int selectedWeight = averageMaleWeight;
-  int selectedAge = 25;
+  static Gender selectedGender = Gender.male;
+  static int selectedHeight = averageMaleHeight;
+  static int selectedWeight = averageMaleWeight;
+  static int selectedAge = 25;
 
   Function selectGender(Gender gender) => () {
         setState(() {
@@ -50,6 +46,7 @@ class _InputPageState extends State<InputPage> {
 
   @override
   Widget build(BuildContext context) {
+    double bmi = BMICalculator.calculateBMI(selectedHeight, selectedWeight);
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
@@ -170,7 +167,13 @@ class _InputPageState extends State<InputPage> {
           ),
           NavButton(
             text: 'CALCULATE YOUR BMI',
-            navigationPage: ResultPage(),
+            navigationPage: ResultPage(
+              bmi: bmi,
+              bmiResult:
+                  BMICalculator.getResult(bmi, selectedGender, selectedAge),
+              normalRange:
+                  BMICalculator.getNormalRange(selectedGender, selectedAge),
+            ),
             navigationMethod: Navigator.push,
           ),
         ],

@@ -1,10 +1,34 @@
 import 'package:flutter/material.dart';
+import 'bmi_calculator.dart';
 import 'nav_button.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
 import 'input_page.dart';
 
+const Map<BMIResult, String> bmiDescription = {
+  BMIResult.normal: 'You have a normal body weight. Good job!',
+  BMIResult.overweight:
+      'Your body weight is above average. Try to eat fewer calories and exercise more.',
+  BMIResult.underweight:
+      'Your body weight is below average. Try to eat more calories.',
+};
+const Map<BMIResult, String> bmiResultString = {
+  BMIResult.normal: 'NORMAL',
+  BMIResult.overweight: 'OVERWEIGHT',
+  BMIResult.underweight: 'UNDERWEIGHT',
+};
+
 class ResultPage extends StatelessWidget {
+  ResultPage({
+    @required this.bmi,
+    @required this.bmiResult,
+    @required this.normalRange,
+  });
+
+  final double bmi;
+  final BMIResult bmiResult;
+  final String normalRange;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +63,7 @@ class ResultPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'NORMAL',
+                              bmiResultString[bmiResult],
                               style: TextStyle(
                                 color: Color(0xFF21BB6B),
                                 fontSize: 20,
@@ -47,7 +71,7 @@ class ResultPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '21.8',
+                              bmi.toStringAsFixed(1),
                               style: TextStyle(
                                 fontSize: 100,
                                 fontWeight: FontWeight.w600,
@@ -63,13 +87,13 @@ class ResultPage extends StatelessWidget {
                                   height: 8,
                                 ),
                                 Text(
-                                  '18.5 - 25',
+                                  normalRange,
                                   style: kResultDescriptionTextStyle,
                                 ),
                               ],
                             ),
                             Text(
-                              'You have a normal body weight. Good job!',
+                              bmiDescription[bmiResult],
                               style: kResultDescriptionTextStyle,
                               textAlign: TextAlign.center,
                             )
